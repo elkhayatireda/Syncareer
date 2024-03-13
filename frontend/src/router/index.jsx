@@ -21,6 +21,7 @@ import UserRoute from './protectors/UserRoute';
 import CompanyRoute from './protectors/CompanyRoute';
 import AdminRoute from './protectors/AdminRoute';
 import Message from '@/pages/user/Chat';
+import Mtest from '@/pages/user/Mostafatest';
 
 // links 
 export const LOGIN_LINK = '/login';
@@ -54,9 +55,9 @@ export const router = createBrowserRouter([
             },
             {
                 path: USER_CHAT_LINK,
-                element: <Chat/>
+                element: <Mtest />
             }
-            
+
         ]
     },
     {
@@ -79,6 +80,6 @@ export const router = createBrowserRouter([
     },
     {
         path: '/user/test',
-        element: <TestReda/>
+        element: <TestReda />
     }
 ])

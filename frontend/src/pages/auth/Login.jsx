@@ -4,7 +4,7 @@ import { axiosClient } from '../../api/axios';
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { toast } from 'sonner'
+// import { toast } from 'sonner'
 
 // routing
 import { Link, useNavigate } from 'react-router-dom';
@@ -44,7 +44,7 @@ function Login() {
                 navigate(USER_HOME_LINK)
             })
             .catch(({ response }) => {
-                toast.error(response.data.message);
+                // toast.error(response.data.message);
             })
             .finally(() => {
 

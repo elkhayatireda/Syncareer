@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\sendMessage;
 use App\Models\User;
 use App\Models\JobOffer;
 use App\Events\TestEvent;
@@ -7,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChatController;
+use Illuminate\Support\Facades\Broadcast;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\Auth\RegisteredUserController;
@@ -70,12 +72,21 @@ Route::group(['middleware' => 'auth:sanctum'], function () { //,admin,company
         return response()->file($path);
     });
     // fetch contacts
-    Route::post('/chat/contacts'    , [ChatController::class,'fetchContacts']);
-    Route::post('/chat/send-message', [ChatController::class,'chatmessage']);
-  
-   
+    Route::post('/chat/contacts', [ChatController::class, 'fetchContacts']);
+    Route::post('/chat/send-message', [ChatController::class, 'chatmessage']);
+
+
+    Route::post('/broadcast', function (Request $request) {
+        $validated_data = $request->validate([
+            'message' => 'required|string',
+        ]);
+
+        broadcast(new sendMessage(
+            $validated_data['message'],
+            $request->user()->id,
+            $request->user()->first_name,
+            1
+        ));
+    });
 });
-Route::post('/broadcasting/auth',[AuthController::class,'authenticateEcho']);
-
-
-
+Broadcast::routes(['middleware' => ['auth:sanctum']]);

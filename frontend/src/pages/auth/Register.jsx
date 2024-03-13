@@ -9,7 +9,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Link, useNavigate } from 'react-router-dom';
 import { LOGIN_LINK } from '../../router';
 // toast Notification 
-import { toast } from 'sonner';
+// import { toast } from 'sonner';
 // icons 
 import { FaArrowRight } from "react-icons/fa";
 //axios
@@ -101,10 +101,10 @@ function Register() {
     const submit = async (formData) => {
         try {
             const { data } = await axiosClient.post('/register', formData);
-            toast.success(data.message);
+            // toast.success(data.message);
             navigate(LOGIN_LINK);
         } catch (error) {
-            toast.error(error.response.data.message);
+            // toast.error(error.response.data.message);
             setFormStep(0);
         }
     };
