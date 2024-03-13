@@ -2,8 +2,11 @@
 
 use App\Models\User;
 use App\Models\JobOffer;
+use App\Events\TestEvent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\Auth\RegisteredUserController;
@@ -57,4 +60,22 @@ Route::group(['middleware' => 'auth:sanctum'], function () { //,admin,company
             'type' => $type,
         ]);
     });
+    // routes to serve images 
+    Route::get('/images/{userId}.jpg', function ($userId) {
+        $path = public_path("images/{$userId}.jpg");
+        return response()->file($path);
+    })->where('userId', '[0-9]+');
+    Route::get('/images/other/{str}.png', function ($str) {
+        $path = public_path("images/other/{$str}.png");
+        return response()->file($path);
+    });
+    // fetch contacts
+    Route::post('/chat/contacts'    , [ChatController::class,'fetchContacts']);
+    Route::post('/chat/send-message', [ChatController::class,'chatmessage']);
+  
+   
 });
+Route::post('/broadcasting/auth',[AuthController::class,'authenticateEcho']);
+
+
+

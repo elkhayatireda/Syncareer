@@ -4,7 +4,9 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Report;
+use App\Models\Message;
 use App\Models\JobOffer;
+use App\Models\Conversation;
 use App\Models\UserEducation;
 use App\Models\UserExperience;
 use Laravel\Sanctum\HasApiTokens;
@@ -72,5 +74,13 @@ class User extends Authenticatable
     public function reports()
     {
         return $this->hasMany(Report::class);
+    }
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
+    public function conversation()
+    {
+        return $this->hasMany(Conversation::class);
     }
 }

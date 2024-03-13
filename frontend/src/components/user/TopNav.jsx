@@ -3,7 +3,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { IoIosLogOut, IoIosMenu } from "react-icons/io";
 import { NavLink } from "react-router-dom";
-import { USER_HOME_LINK } from "@/router";
+import { USER_HOME_LINK, USER_CHAT_LINK } from "@/router";
 
 import {
     DropdownMenu,
@@ -55,7 +55,7 @@ function TopNav() {
         };
     }, [])
     return (
-        <nav className="fixed top-0 left-0 right-0 px-6 py-3 lg:py-0 flex items-center  bg-background">
+        <nav className="fixed top-0 left-0 right-0 px-6 py-3 lg:py-0 flex items-center  bg-background z-20 h-25">
             <h1 className="py-2 text-xl text-primary font-semibold">SynCareer</h1>
             <ul className="pt-3 ml-20 hidden lg:flex gap-4">
                 <li>
@@ -64,7 +64,7 @@ function TopNav() {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="t" className={(navData) => (navData.isActive ? 'border-b-4 border-primary ' : '') + 'py-4 block h-full'}>
+                    <NavLink to={USER_CHAT_LINK} className={(navData) => (navData.isActive ? 'border-b-4 border-primary ' : '') + 'py-4 block h-full'}>
                         Messages
                     </NavLink>
                 </li>
@@ -150,7 +150,7 @@ function TopNav() {
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink to="t" className={(navData) => (navData.isActive ? 'bg-secondary ' : '') + 'p-2 my-4 block h-full'}>
+                                <NavLink to={USER_CHAT_LINK} className={(navData) => (navData.isActive ? 'bg-secondary ' : '') + 'p-2 my-4 block h-full'}>
                                     Messages
                                 </NavLink>
                             </li>

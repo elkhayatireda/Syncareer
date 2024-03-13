@@ -10,15 +10,17 @@ function UserLayout() {
         }
     })
 
+   
+
     return (
-        <>
-            <header>
+        <div className="h-screen" >
+            <header className="border-b border-gray-500 border-1">
                 <TopNav />
             </header>
-            <main className="p-4 pt-24">
-                <Outlet />
+            <main className=" pb-6 bg-white h-screen">
+                <Outlet  />
             </main>
-        </>
+        </div>
     );
 }
 
